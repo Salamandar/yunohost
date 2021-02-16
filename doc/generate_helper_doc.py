@@ -1,4 +1,4 @@
-#!/usr/env/python3
+#!/usr/bin/env python3
 
 import os
 import glob
@@ -199,6 +199,11 @@ class Parser:
                         else:
                             argdescr = " ".join(linesplit[4:])
                             b["args"].append((argname, argdescr))
+                    elif line.startswith("|  "):
+                        arg = list(b["args"][-1])
+                        arg[-1] += ' ' + line[1:].strip()
+                        b["args"][-1] = tuple(arg)
+
                 continue
 
             else:
